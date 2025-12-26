@@ -8,7 +8,6 @@ First, set the environment variables. For your local development, you should set
 - NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 Second, run the development server:
-
 ```bash
 npm run dev
 # or
