@@ -110,7 +110,7 @@ export default function Home() {
                 href="#search-mentors"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToElement('mentors');
+                  scrollToElement('search-mentors');
                 }}
                 className="px-3 py-2 text-sm sm:text-base font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-all border border-blue-200 hover:border-blue-300"
               >
