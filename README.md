@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, set the environment variables. In the local development, you can set them in .env.local file. You can ask me the variable values to me, Jaedong Shin.
+First, set the environment variables. For your local development, you should set them in .env.local file. You can ask me, Jaedong Shin, the variable values.
 
 - NEXT_PUBLIC_SUPABASE_URL
 - NEXT_PUBLIC_SUPABASE_ANON_KEY
