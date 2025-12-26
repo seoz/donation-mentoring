@@ -19,6 +19,19 @@ export const translations = {
     viewHome: "Go to Home",
     noMentors: "No mentors found.",
     loading: "Loading...",
+    navMentors: "Donation Mentors",
+    navHowTo: "How Donation Mentoring Works",
+    howToDonate: "How Donation Mentoring Works",
+    howToDonateSteps: [
+      "Select the mentor you wish to receive guidance from.",
+      "Check available time slots and fees on the mentor's calendar.",
+      "Go to Unicef (https://unicef.org/).",
+      "Click Donate and select 'Give Once'.",
+      "Enter the amount corresponding to the mentor's fee and complete the payment.",
+      "After donating, forward the donation receipt to the mentor via email.",
+      "Book your session on the mentor's calendar.",
+      "Attend the mentoring session at the scheduled time."
+    ],
   },
   ko: {
     title: "기부 멘토링",
@@ -40,6 +53,19 @@ export const translations = {
     viewHome: "홈으로 이동",
     noMentors: "멘토를 찾을 수 없습니다.",
     loading: "로딩 중...",
+    navMentors: "기부 멘토 목록",
+    navHowTo: "기부 멘토링 방법",
+    howToDonate: "기부 멘토링 방법",
+    howToDonateSteps: [
+      "멘토 받고 싶은 사람 선택",
+      "멘토의 캘린더에서 가능한 시간과 비용 확인",
+      "Unicef(https://unicef.org/) 이동",
+      "Donate - 'Give Once'",
+      "멘토에 따른 비용 입력 및 결제",
+      "기부를 마치고 멘토에게 영수증 메일 포워딩",
+      "멘토 캘린더 예약",
+      "약속된 시간에 멘토링 진행"
+    ],
   }
 };
 

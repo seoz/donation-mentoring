@@ -100,7 +100,29 @@ export default function Home() {
       <header className="bg-white shadow-sm sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">{t.title}</h1>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <nav className="flex items-center gap-2 sm:gap-3">
+              <a
+                href="#how-to-donate"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('how-to-donate')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="px-3 py-2 text-sm sm:text-base font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-all border border-blue-200 hover:border-blue-300"
+              >
+                {t.navHowTo}
+              </a>
+              <a
+                href="#mentors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('mentors')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="px-3 py-2 text-sm sm:text-base font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-all border border-blue-200 hover:border-blue-300"
+              >
+                {t.navMentors}
+              </a>
+            </nav>
             <button
               onClick={() => setLang(lang === 'en' ? 'ko' : 'en')}
               className="text-sm font-medium text-gray-600 hover:text-gray-900"
@@ -117,8 +139,57 @@ export default function Home() {
         </div>
       </header>
 
+      {/* How to Donate Section */}
+      <section id="how-to-donate" className="mt-16 mb-12 scroll-mt-20">
+        <div className="bg-white rounded-lg shadow-md p-8 sm:p-10">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">
+            {t.howToDonate}
+          </h2>
+          <ol className="space-y-4 max-w-3xl mx-auto">
+            {t.howToDonateSteps.map((step, index) => {
+              // Find URL pattern like (https://...)
+              const urlMatch = step.match(/\(https?:\/\/[^)]+\)/);
+              if (urlMatch) {
+                const url = urlMatch[0].slice(1, -1); // Remove parentheses
+                const parts = step.split(urlMatch[0]);
+                return (
+                  <li key={index} className="flex items-start">
+                    <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full font-bold text-sm mr-4 mt-0.5">
+                      {index + 1}
+                    </span>
+                    <span className="text-lg text-gray-700 leading-relaxed">
+                      {parts[0]}
+                      <a 
+                        href={url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 underline"
+                      >
+                        ({url})
+                      </a>
+                      {parts[1]}
+                    </span>
+                  </li>
+                );
+              }
+              
+              return (
+                <li key={index} className="flex items-start">
+                  <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full font-bold text-sm mr-4 mt-0.5">
+                    {index + 1}
+                  </span>
+                  <span className="text-lg text-gray-700 leading-relaxed">
+                    {step}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
       {/* Hero / Search */}
-      <div className="bg-blue-600 py-16 px-4 sm:px-6 lg:px-8">
+      <div id="mentors" className="bg-blue-600 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl mb-4">
             {t.subtitle}
@@ -139,7 +210,7 @@ export default function Home() {
       </div>
 
       {/* Mentors Grid */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-20">
         {loading ? (
           <div className="text-center py-12 text-gray-500">{t.loading}</div>
         ) : filteredMentors.length > 0 ? (
