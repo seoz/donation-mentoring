@@ -77,6 +77,26 @@ export default function Home() {
           <div className="flex items-center gap-3 sm:gap-4">
             <nav className="flex items-center gap-2 sm:gap-3">
               <a
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToElement('about');
+                }}
+                className="px-3 py-2 text-sm sm:text-base font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-all border border-blue-200 hover:border-blue-300"
+              >
+                {t.navAbout}
+              </a>
+              <a
+                href="#values"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToElement('values');
+                }}
+                className="px-3 py-2 text-sm sm:text-base font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-all border border-blue-200 hover:border-blue-300"
+              >
+                {t.navValues}
+              </a>
+              <a
                 href="#how-to-donate"
                 onClick={(e) => {
                   e.preventDefault();
@@ -87,7 +107,7 @@ export default function Home() {
                 {t.navHowTo}
               </a>
               <a
-                href="#mentors"
+                href="#search-mentors"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToElement('mentors');
@@ -112,6 +132,56 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* About Section */}
+      <section id="about" className="bg-white border-b border-gray-100 py-12 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.mentoringTitle}</h2>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                {t.mentoringDesc}
+              </p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.donationMentoringTitle}</h2>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                {t.donationMentoringDesc}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section id="values" className="bg-gray-50 py-12 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.mentorValueTitle}</h2>
+              <ul className="space-y-3">
+                {t.mentorValuePoints.map((point, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    <span className="text-gray-600">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.menteeValueTitle}</h2>
+              <ul className="space-y-3">
+                {t.menteeValuePoints.map((point, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    <span className="text-gray-600">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* How to Donate Section */}
       <section id="how-to-donate" className="mt-16 mb-12 scroll-mt-20">
@@ -163,7 +233,7 @@ export default function Home() {
       </section>
 
       {/* Hero / Search */}
-      <div id="mentors" className="bg-blue-600 py-16 px-4 sm:px-6 lg:px-8">
+      <div id="search-mentors" className="bg-blue-600 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl mb-4">
             {t.subtitle}
