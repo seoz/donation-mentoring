@@ -27,106 +27,136 @@ export default function MentorCard({ mentor, lang, onClick }: MentorCardProps) {
   const displayCompany = company || mentor.company_en || mentor.company_ko || '';
 
   return (
-    <div 
+    <div
       onClick={() => onClick(mentor)}
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col h-full"
+      className="group bg-white rounded-2xl overflow-hidden cursor-pointer flex flex-col h-full
+        border border-warm-100 hover:border-primary-200
+        shadow-sm hover:shadow-xl
+        transition-all duration-300 ease-out
+        hover:-translate-y-1"
     >
-      <div className="relative h-64 w-full bg-gray-200 flex-shrink-0">
+      {/* Image Section */}
+      <div className="relative h-64 w-full bg-warm-100 flex-shrink-0 overflow-hidden">
         {mentor.picture_url && !imageError ? (
-          <Image
-            src={mentor.picture_url}
-            alt={displayName}
-            fill
-            className="object-cover"
-            unoptimized={mentor.picture_url.includes('supabase.co')}
-            onError={() => setImageError(true)}
-          />
+          <>
+            <Image
+              src={mentor.picture_url}
+              alt={displayName}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              unoptimized={mentor.picture_url.includes('supabase.co')}
+              onError={() => setImageError(true)}
+            />
+            {/* Gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-warm-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </>
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-400">
-            No Image
+          <div className="flex items-center justify-center h-full text-warm-400">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-2 rounded-full bg-warm-200 flex items-center justify-center">
+                <span className="text-2xl text-warm-400">👤</span>
+              </div>
+              <span className="text-sm">No Image</span>
+            </div>
           </div>
         )}
       </div>
+
+      {/* Content Section */}
       <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-2xl font-extrabold text-gray-900 mb-2">{displayName}</h3>
-        
+        <h3 className="text-xl font-display text-warm-900 mb-2 group-hover:text-primary-700 transition-colors">
+          {displayName}
+        </h3>
+
         <div className="flex flex-col gap-1.5 mb-3">
-          <div className="flex items-center text-sm font-medium text-gray-700">
-            <Briefcase size={16} className="mr-2 text-blue-600 flex-shrink-0" />
-            <span>{displayPosition}</span>
+          <div className="flex items-center text-sm font-medium text-warm-700">
+            <Briefcase size={15} className="mr-2 text-primary-500 flex-shrink-0" />
+            <span className="truncate">{displayPosition}</span>
           </div>
           {displayCompany && (
-            <div className="flex items-center text-sm font-medium text-gray-700">
-              <Building2 size={16} className="mr-2 text-blue-600 flex-shrink-0" />
-              <span>{displayCompany}</span>
+            <div className="flex items-center text-sm text-warm-600">
+              <Building2 size={15} className="mr-2 text-primary-400 flex-shrink-0" />
+              <span className="truncate">{displayCompany}</span>
             </div>
           )}
-          <div className="flex items-center text-sm text-gray-500">
-            <MapPin size={16} className="mr-2 text-gray-400 flex-shrink-0" />
-            <span>{displayLocation}</span>
+          <div className="flex items-center text-sm text-warm-500">
+            <MapPin size={15} className="mr-2 text-warm-400 flex-shrink-0" />
+            <span className="truncate">{displayLocation}</span>
           </div>
+
+          {/* Session info */}
           {(mentor.session_time_minutes || mentor.session_price_usd) && (
-            <div className="flex items-center gap-4 pt-1 border-t border-gray-100">
+            <div className="flex items-center gap-4 pt-2 mt-1 border-t border-warm-100">
               {mentor.session_time_minutes && (
-                <div className="flex items-center text-sm font-medium text-green-600">
-                  <Clock size={16} className="mr-1.5 text-green-600 flex-shrink-0" />
+                <div className="flex items-center text-sm font-medium text-secondary-600">
+                  <Clock size={14} className="mr-1.5 text-secondary-500 flex-shrink-0" />
                   <span>{mentor.session_time_minutes} min</span>
                 </div>
               )}
               {mentor.session_price_usd && (
-                <div className="flex items-center text-sm font-medium text-green-600">
-                  <DollarSign size={16} className="mr-1.5 text-green-600 flex-shrink-0" />
-                  <span>{mentor.session_price_usd.toFixed(2)}</span>
+                <div className="flex items-center text-sm font-medium text-secondary-600">
+                  <DollarSign size={14} className="mr-1.5 text-secondary-500 flex-shrink-0" />
+                  <span>{mentor.session_price_usd.toFixed(0)}</span>
                 </div>
               )}
             </div>
           )}
         </div>
 
-        <p className="text-gray-600 text-sm line-clamp-5 mb-4 flex-grow">
+        <p className="text-warm-600 text-sm line-clamp-4 mb-4 flex-grow leading-relaxed">
           {displayDescription}
         </p>
-        
+
+        {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mb-4">
-          {mentor.tags && mentor.tags.map((tag, index) => (
-            <span key={index} className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-full border border-gray-200">
+          {mentor.tags && mentor.tags.slice(0, 4).map((tag, index) => (
+            <span
+              key={index}
+              className="px-2.5 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-full border border-primary-100"
+            >
               {tag}
             </span>
           ))}
+          {mentor.tags && mentor.tags.length > 4 && (
+            <span className="px-2.5 py-1 bg-warm-100 text-warm-500 text-xs font-medium rounded-full">
+              +{mentor.tags.length - 4}
+            </span>
+          )}
         </div>
 
-        <div className="flex flex-wrap gap-3 pt-3 border-t border-gray-100 mt-auto">
+        {/* Action Links */}
+        <div className="flex flex-wrap gap-3 pt-3 border-t border-warm-100 mt-auto">
           {mentor.linkedin_url && (
-            <a 
-              href={ensureProtocol(mentor.linkedin_url)} 
-              target="_blank" 
+            <a
+              href={ensureProtocol(mentor.linkedin_url)}
+              target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#0A66C2] transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium text-warm-500 hover:text-[#0A66C2] transition-colors"
             >
-              <Linkedin size={16} />
+              <Linkedin size={15} />
               LinkedIn
             </a>
           )}
           {mentor.calendly_url && (
-            <a 
-              href={ensureProtocol(mentor.calendly_url)} 
-              target="_blank" 
+            <a
+              href={ensureProtocol(mentor.calendly_url)}
+              target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium text-warm-500 hover:text-primary-600 transition-colors"
             >
-              <Calendar size={16} />
-              Book Session
+              <Calendar size={15} />
+              Book
             </a>
           )}
           {mentor.email && (
-            <a 
+            <a
               href={`mailto:${mentor.email}`}
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium text-warm-500 hover:text-primary-600 transition-colors"
             >
-              <Mail size={16} />
+              <Mail size={15} />
               Email
             </a>
           )}
