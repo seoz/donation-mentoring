@@ -5,7 +5,7 @@ import { supabase } from '@/utils/supabase';
 import { Mentor } from '@/types/mentor';
 import MentorCard from '@/app/components/MentorCard';
 import { translations, Language } from '@/utils/i18n';
-import { ensureProtocol, getMentorDisplay, scrollToElement } from '@/utils/helpers';
+import { ensureProtocol, getMentorDisplay, scrollToElement, shuffleArray } from '@/utils/helpers';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search, X, Briefcase, MapPin, Building2, Linkedin, Calendar, Mail } from 'lucide-react';
@@ -23,14 +23,15 @@ export default function Home() {
     const { data, error } = await supabase
       .from('mentors')
       .select('*')
-      .eq('is_active', true)
-      .order('created_at', { ascending: false })
-      .order('id', { ascending: true });
+      .eq('is_active', true);
 
     if (error) {
       console.error('Error fetching mentors:', error);
+      setMentors([]); // Ensure mentors array is empty on error
     } else {
-      setMentors(data || []);
+      // Randomly shuffle mentors for even distribution
+      const shuffledMentors = shuffleArray(data || []);
+      setMentors(shuffledMentors);
     }
     setLoading(false);
   };
