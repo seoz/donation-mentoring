@@ -222,13 +222,15 @@ export default function AdminPage() {
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-gray-900">{t.adminTitle}</h1>
-            <button
-              onClick={() => setLang(lang === 'en' ? 'ko' : 'en')}
-              className="text-sm text-gray-500 hover:text-gray-900"
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t.adminTitle}</h1>
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value as Language)}
+              className="text-xs sm:text-sm font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
-              {lang === 'en' ? '🇰🇷 한국어' : '🇺🇸 English'}
-            </button>
+              <option value="ko">🇰🇷 KO</option>
+              <option value="en">🇺🇸 EN</option>
+            </select>
           </div>
           <Link href="/" className="text-blue-600 hover:text-blue-500">
             {t.viewHome}
