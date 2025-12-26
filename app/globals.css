@@ -44,8 +44,7 @@
   --color-neutral-900: #292524;
 
   /* Fonts */
-  --font-display: var(--font-display), 'DM Serif Display', Georgia, serif;
-  --font-body: var(--font-korean), var(--font-body), 'Noto Sans KR', 'Source Sans 3', sans-serif;
+  --font-sans: var(--font-korean), var(--font-sans), 'Noto Sans KR', 'Source Sans 3', system-ui, sans-serif;
 }
 
 @theme inline {
@@ -89,12 +88,7 @@
 body {
   background: var(--color-neutral-50);
   color: var(--color-neutral-900);
-  font-family: var(--font-body);
-}
-
-/* Display font for headings */
-.font-display {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
 }
 
 /* Animations */

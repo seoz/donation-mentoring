@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Serif_Display, Source_Sans_3, Noto_Sans_KR } from "next/font/google";
+import { Source_Sans_3, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 
-const dmSerif = DM_Serif_Display({
-  weight: "400",
-  variable: "--font-display",
-  subsets: ["latin"],
-});
-
 const sourceSans = Source_Sans_3({
-  variable: "--font-body",
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -39,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSerif.variable} ${sourceSans.variable} ${notoSansKR.variable} antialiased`}
+        className={`${sourceSans.variable} ${notoSansKR.variable} antialiased`}
       >
         {children}
       </body>

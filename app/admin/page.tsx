@@ -222,7 +222,7 @@ export default function AdminPage() {
       <header className="bg-white/80 backdrop-blur-md shadow-sm border-b border-warm-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl sm:text-2xl font-display text-warm-900">{t.adminTitle}</h1>
+            <h1 className="text-xl sm:text-2xl font-semibold text-warm-900">{t.adminTitle}</h1>
             <select
               value={lang}
               onChange={(e) => setLang(e.target.value as Language)}
@@ -318,7 +318,7 @@ export default function AdminPage() {
         <div className="fixed inset-0 bg-warm-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
           <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 animate-scale-in">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-display text-warm-900">{editingMentor ? t.edit : 'Add Mentor'}</h2>
+              <h2 className="text-xl font-semibold text-warm-900">{editingMentor ? t.edit : 'Add Mentor'}</h2>
               <button onClick={() => setIsFormOpen(false)} className="p-2 text-warm-400 hover:text-warm-600 hover:bg-warm-100 rounded-full transition-all">
                 <X size={22} />
               </button>
