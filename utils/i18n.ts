@@ -26,7 +26,7 @@ export const translations = {
     languages: "Languages",
     sessionTime: "Session Time (minutes)",
     sessionPrice: "Session Price (USD)",
-    unicefDonation: "Unicef Donation",
+    unicefDonation: "UNICEF Donation",
     viewHome: "Go to Home",
     noMentors: "No mentors found.",
     loading: "Loading...",
@@ -73,21 +73,20 @@ export const translations = {
     mentoringTitle: "What is Mentoring?",
     mentoringDesc: "Mentoring is a process where mentees find their own answers by sharing their concerns and questions with mentors. While thinking alone can limit you to your own experiences and perspectives, working with a mentor's diverse views and rich experiences allows you to find broader perspectives and solutions.",
     donationMentoringTitle: "What is Donation Mentoring?",
-    donationMentoringDesc: "It was started to increase the sense of responsibility for both mentors and mentees, while simultaneously creating a positive impact on the world.",
+    donationMentoringDesc: "From my experience, free mentoring (1:1s, coffee chats, coaching) can sometimes result in low engagement. To build a more committed and sustainable community while making a difference, I now include a UNICEF donation as part of the mentoring process. This way, our growth also helps provide a better future for vulnerable children around the world.",
     mentorValueTitle: "Value for Mentors",
     mentorValuePoints: [
       "Contribute to mentee growth using your expertise.",
       "Save time and energy with efficient scheduling and management systems.",
       "While there is no direct financial gain, it has the same effect as a donation made by the mentor.",
-      "Gain new perspectives and experience a sense of responsibility through interaction with mentees."
+      "Build relationships with other donation mentors."
     ],
     menteeValueTitle: "Value for Mentees",
     menteeValuePoints: [
       "Experience meaningful connections with mentors who are usually hard to reach.",
       "Efficiently coordinate schedules through the mentor's calendar.",
       "Enjoy practical benefits like tax deductions through donations.",
-      "Contribute to society by participating in donation activities.",
-      "Gain responsibility and motivation during the mentoring process."
+      "Contribute to society by participating in donation activities."
     ],
   },
   ko: {
@@ -117,7 +116,7 @@ export const translations = {
     languages: "멘토링 가능 언어",
     sessionTime: "세션 시간 (분)",
     sessionPrice: "세션 가격 (USD)",
-    unicefDonation: "Unicef 기부",
+    unicefDonation: "UNICEF 기부",
     viewHome: "홈으로 이동",
     noMentors: "멘토를 찾을 수 없습니다.",
     loading: "로딩 중...",
@@ -164,21 +163,20 @@ export const translations = {
     mentoringTitle: "멘토링이란?",
     mentoringDesc: "멘토링은 멘티가 자신의 고민과 질문을 멘토에게 공유하면서 자신만의 답을 찾아가는 과정입니다. 혼자서 고민하면 자신의 경험과 관점에 한정될 수 있지만, 멘토의 다양한 시각과 풍부한 경험과 함께라면, 더 넓은 시야와 해결책을 찾을 수 있습니다.",
     donationMentoringTitle: "기부 멘토링이란?",
-    donationMentoringDesc: "멘토와 멘티 서로의 책임감을 높이고, 동시에 세상에 선한 영향을 끼치기 위해 시작하였습니다.",
+    donationMentoringDesc: "멘토링(1:1, 커피챗, 코칭 등등)을 하는데, 무료로 했을 때, 멘토와 멘티의 책임감이 떨어지는 것을 경험했습니다. 그래서, 지속 가능성을 높이고, 동시에 세상에 선한 영향을 끼치기 위해 멘토링에 UNICEF 기부를 추가 하였습니다. UNICEF 기부는 전세계 어려운 아이들에게 큰 도움을 줍니다.",
     mentorValueTitle: "멘토의 가치",
     mentorValuePoints: [
       "자신의 전문성을 활용하여 멘티의 성장에 기여합니다.",
       "효율적인 예약 및 관리 시스템으로 시간과 에너지를 절약합니다.",
-      "직접적인 금전 이익은 없지만, 멘토가 기부한 것과 동일한 효과를 일으킵니다.",
-      "멘티와의 상호작용으로 책임감을 경험하고 새로운 관점을 얻을 수 있습니다."
+      "직접적인 금전 이익은 없지만, 간점적으로 멘토가 기부한 것과 동일한 효과를 일으킵니다.",
+      "기부 멘토들간의 네트워킹을 얻을 수 있습니다."
     ],
     menteeValueTitle: "멘티의 가치",
     menteeValuePoints: [
       "평소 접하기 어려운 멘토와 의미 있는 연결을 경험합니다.",
       "멘토의 캘린더를 통해 효율적인 시간 조율이 가능합니다.",
       "기부금을 통해 세금 환급과 같은 실질적인 혜택도 누릴 수 있습니다.",
-      "기부 활동에 참여하며 사회에 긍정적인 영향을 미칩니다.",
-      "멘토링 과정에서 책임감과 동기부여를 얻을 수 있습니다."
+      "기부 활동에 참여하며 사회에 긍정적인 영향을 미칩니다."
     ],
   }
 };
