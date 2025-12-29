@@ -21,14 +21,12 @@ export default function AdminPage() {
   const [uploading, setUploading] = useState(false);
   const [search, setSearch] = useState('');
   const [searchExpanded, setSearchExpanded] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
-  const [deleteConfirm, setDeleteConfirm] = useState<{ id: string; name: string } | null>(null);
-
-  // Persist dark mode across site
-  useEffect(() => {
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return true;
     const saved = localStorage.getItem('darkMode');
-    if (saved !== null) setDarkMode(saved === 'true');
-  }, []);
+    return saved !== null ? saved === 'true' : true;
+  });
+  const [deleteConfirm, setDeleteConfirm] = useState<{ id: string; name: string } | null>(null);
 
   const toggleDarkMode = () => {
     const newValue = !darkMode;
@@ -135,7 +133,21 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    fetchMentors();
+    const loadMentors = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('mentors')
+        .select('*')
+        .order('name_ko', { ascending: true });
+
+      if (error) {
+        console.error('Error fetching mentors:', error);
+      } else {
+        setMentors(data || []);
+      }
+      setLoading(false);
+    };
+    loadMentors();
   }, []);
 
   const handleEdit = (mentor: Mentor) => {

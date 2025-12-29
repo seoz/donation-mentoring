@@ -37,16 +37,14 @@ export default function Home() {
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
   const [showDetailedSteps, setShowDetailedSteps] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true;
+  });
   const [scrollY, setScrollY] = useState(0);
   const [isMentorModalOpen, setIsMentorModalOpen] = useState(false);
   const mentorsSectionRef = useRef<HTMLElement>(null);
-
-  // Persist dark mode across site
-  useEffect(() => {
-    const saved = localStorage.getItem('darkMode');
-    if (saved !== null) setDarkMode(saved === 'true');
-  }, []);
 
   const toggleDarkMode = () => {
     const newValue = !darkMode;
@@ -85,24 +83,23 @@ export default function Home() {
   const { filteredMentors, availableTags, availableLocations, activeFilterCount, hasActiveFilters } =
     useMentorFilters({ mentors, search, lang, filters });
 
-  const fetchMentors = async () => {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from('mentors')
-      .select('*')
-      .eq('is_active', true);
-
-    if (error) {
-      console.error('Error fetching mentors:', error);
-      setMentors([]);
-    } else {
-      setMentors(shuffleArray(data || []));
-    }
-    setLoading(false);
-  };
-
   useEffect(() => {
-    fetchMentors();
+    const loadMentors = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('mentors')
+        .select('*')
+        .eq('is_active', true);
+
+      if (error) {
+        console.error('Error fetching mentors:', error);
+        setMentors([]);
+      } else {
+        setMentors(shuffleArray(data || []));
+      }
+      setLoading(false);
+    };
+    loadMentors();
   }, []);
 
   const t = translations[lang];
@@ -117,7 +114,7 @@ export default function Home() {
     <div className={`min-h-screen ${dm.bg} scroll-smooth transition-colors duration-300`}>
       {/* Sticky Navigation */}
       <header className={`${dm.headerBg} backdrop-blur-sm shadow-sm sticky top-0 z-40 transition-colors duration-300`}>
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             {/* Logo */}
             <Link href="/" className={`text-base sm:text-lg font-bold ${dm.text} whitespace-nowrap mr-2 sm:mr-4`}>
@@ -208,7 +205,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="max-w-6xl mx-auto relative">
+        <div className="max-w-7xl mx-auto relative">
           {/* How it Works - Bento Card */}
           <div className={`${dm.bgCardAlt} rounded-2xl p-3 sm:p-4 md:p-6 shadow-sm border ${dm.border} transition-all`}>
             {/* About Section - Bento Cards - Always visible */}
@@ -365,7 +362,7 @@ export default function Home() {
 
       {/* Mentors Section */}
       <section ref={mentorsSectionRef} id="mentors" className={`${dm.bg} py-10 scroll-mt-14 transition-colors duration-300`}>
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Sticky section header - stays visible while browsing mentors */}
           <div className={`flex items-center justify-between mb-6 sticky top-14 z-20 ${dm.bg} py-2 -mt-2 lg:static`}>
             <h2 className={`text-xl font-bold ${dm.text}`}>{t.navMentors}</h2>
